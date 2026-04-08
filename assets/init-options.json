@@ -1,0 +1,7 @@
+{
+  "ai": "claude",
+  "ai_skills": true,
+  "branch_numbering": "sequential",
+  "integration": "claude",
+  "script": "sh"
+}

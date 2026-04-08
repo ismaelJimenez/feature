@@ -1,0 +1,51 @@
+#!/usr/bin/env bash
+# Session start context injection for wingman plugin
+# Reads the using-wingman skill file, escapes it for JSON, and outputs
+# platform-specific JSON to stdout for context injection.
+set -euo pipefail
+
+# Derive script and plugin root directories
+SCRIPT_DIR="$(cd "$(dirname "$0")" && pwd)"
+PLUGIN_ROOT="$(cd "${SCRIPT_DIR}/.." && pwd)"
+
+# Escape a string for safe embedding in a JSON value.
+# Uses bash parameter expansion — order matters (backslash first).
+escape_for_json() {
+  local s="$1"
+  s="${s//\\/\\\\}"
+  s="${s//\"/\\\"}"
+  s="${s//$'\n'/\\n}"
+  s="${s//$'\r'/\\r}"
+  s="${s//$'\t'/\\t}"
+  printf '%s' "$s"
+}
+
+# Read the using-wingman skill file
+SKILL_CONTENT="$(cat "${PLUGIN_ROOT}/skills/using-wingman/SKILL.md" 2>&1 || echo "Error reading using-wingman skill file")"
+
+# Assemble the content string with emphasis wrapper
+CONTENT="<EXTREMELY_IMPORTANT>
+You have wingman.
+
+**Below is the full content of your 'wingman:using-wingman' skill - your introduction to using skills. For all other skills, use the 'Skill' tool:**
+
+${SKILL_CONTENT}
+</EXTREMELY_IMPORTANT>"
+
+# Escape the assembled content for JSON embedding
+ESCAPED="$(escape_for_json "$CONTENT")"
+
+# Platform detection and JSON output
+# Precedence: Cursor → Claude Code → SDK standard (Copilot CLI / fallback)
+if [ -n "${CURSOR_PLUGIN_ROOT:-}" ]; then
+  # Cursor sets CURSOR_PLUGIN_ROOT (may also set CLAUDE_PLUGIN_ROOT)
+  printf '{\n  "additional_context": "%s"\n}\n' "$ESCAPED"
+elif [ -n "${CLAUDE_PLUGIN_ROOT:-}" ] && [ -z "${COPILOT_CLI:-}" ]; then
+  # Claude Code sets CLAUDE_PLUGIN_ROOT without COPILOT_CLI
+  printf '{\n  "hookSpecificOutput": {\n    "hookEventName": "SessionStart",\n    "additionalContext": "%s"\n  }\n}\n' "$ESCAPED"
+else
+  # Copilot CLI (sets COPILOT_CLI=1) or unknown platform — SDK standard format
+  printf '{\n  "additionalContext": "%s"\n}\n' "$ESCAPED"
+fi
+
+exit 0

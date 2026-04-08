@@ -1,0 +1,92 @@
+# Git Branching Workflow Extension Configuration
+# Bundled default. Project overrides: .wingman/extensions/git/git-config.yml
+
+# Branch numbering strategy: "sequential" (001, 002, ...) or "timestamp" (YYYYMMDD-HHMMSS)
+branch_numbering: sequential
+
+# Commit message used by `git commit` during repository initialization
+init_commit_message: "[Wingman] Initial commit"
+
+# Auto-commit before/after core commands.
+# Set "default" to enable for all commands, then override per-command.
+# Each command uses two booleans (matching extensions.yml convention):
+#   enabled  — true/false: whether auto-commit is active
+#   optional — true/false: whether to prompt the user before committing
+#     enabled: false                → disabled, no commit and no prompt
+#     enabled: true, optional: false → silent commit (no user interaction)
+#     enabled: true, optional: true  → ask user for confirmation before committing
+# Message is customizable per-command.
+# Prompt is the question shown when optional: true (auto-generated if omitted).
+auto_commit:
+  default: false
+  before_clarify:
+    enabled: true
+    optional: true
+    message: "[Wingman] Save progress before clarification"
+    prompt: "Commit outstanding changes before clarification?"
+  before_plan:
+    enabled: true
+    optional: true
+    message: "[Wingman] Save progress before planning"
+    prompt: "Commit outstanding changes before plan?"
+  before_tasks:
+    enabled: true
+    optional: true
+    message: "[Wingman] Save progress before task generation"
+    prompt: "Commit outstanding changes before tasks?"
+  before_implement:
+    enabled: true
+    optional: true
+    message: "[Wingman] Save progress before implementation"
+    prompt: "Commit outstanding changes before implement?"
+  before_checklist:
+    enabled: true
+    optional: true
+    message: "[Wingman] Save progress before checklist"
+    prompt: "Commit outstanding changes before checklist?"
+  before_analyze:
+    enabled: true
+    optional: true
+    message: "[Wingman] Save progress before analysis"
+    prompt: "Commit outstanding changes before analyze?"
+  before_taskstoissues:
+    enabled: true
+    optional: true
+    message: "[Wingman] Save progress before issue sync"
+    prompt: "Commit outstanding changes before taskstoissues?"
+  after_constitution:
+    enabled: true
+    optional: true
+    message: "[Wingman] Add project constitution"
+  after_specify:
+    enabled: true
+    optional: true
+    message: "[Wingman] Add specification"
+  after_clarify:
+    enabled: true
+    optional: true
+    message: "[Wingman] Clarify specification"
+  after_plan:
+    enabled: true
+    optional: true
+    message: "[Wingman] Add implementation plan"
+  after_tasks:
+    enabled: true
+    optional: true
+    message: "[Wingman] Add tasks"
+  after_implement:
+    enabled: true
+    optional: true
+    message: "[Wingman] Implementation progress"
+  after_checklist:
+    enabled: true
+    optional: true
+    message: "[Wingman] Add checklist"
+  after_analyze:
+    enabled: true
+    optional: true
+    message: "[Wingman] Add analysis report"
+  after_taskstoissues:
+    enabled: true
+    optional: true
+    message: "[Wingman] Sync tasks to issues"
