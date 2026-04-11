@@ -39,7 +39,7 @@ You **MUST** consider the user input before proceeding (if not empty).
 
 ## Pre-Execution
 
-Invoke `wingman:git-commit` if there are uncommitted changes before proceeding.
+Invoke `wingman:git-commit` with event `before_checklist` before proceeding.
 
 ## Execution Steps
 

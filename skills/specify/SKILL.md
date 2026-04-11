@@ -16,6 +16,10 @@ $ARGUMENTS
 
 You **MUST** consider the user input before proceeding (if not empty).
 
+## Pre-Execution
+
+Invoke `wingman:git-feature` before proceeding to ensure a feature branch exists.
+
 ## Outline
 
 The text the user typed after `wingman:specify` in the triggering message **is** the feature description. Assume you always have it available in this conversation even if `$ARGUMENTS` appears literally below. Do not ask the user to repeat it unless they provided an empty command.
