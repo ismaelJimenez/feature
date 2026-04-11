@@ -24,12 +24,12 @@ function Find-SpecifyRoot {
     }
 }
 
-# Get repository root, prioritizing WINGMAN_ROOT override, then .wingman directory, then git
+# Get repository root, prioritizing WINGMAN_PROJECT_ROOT override, then .wingman directory, then git
 # This prevents using a parent git repo when spec-kit is initialized in a subdirectory
 function Get-RepoRoot {
-    # Check for WINGMAN_ROOT environment variable (plugin context override)
-    if ($env:WINGMAN_ROOT) {
-        return $env:WINGMAN_ROOT
+    # Check for WINGMAN_PROJECT_ROOT environment variable (explicit project root override)
+    if ($env:WINGMAN_PROJECT_ROOT) {
+        return $env:WINGMAN_PROJECT_ROOT
     }
 
     # First, look for .wingman directory (spec-kit's own marker)

@@ -24,12 +24,12 @@ find_specify_root() {
     return 1
 }
 
-# Get repository root, prioritizing WINGMAN_ROOT override, then .wingman directory, then git
+# Get repository root, prioritizing WINGMAN_PROJECT_ROOT override, then .wingman directory, then git
 # This prevents using a parent git repo when spec-kit is initialized in a subdirectory
 get_repo_root() {
-    # Check for WINGMAN_ROOT environment variable (plugin context override)
-    if [[ -n "${WINGMAN_ROOT:-}" ]]; then
-        echo "$WINGMAN_ROOT"
+    # Check for WINGMAN_PROJECT_ROOT environment variable (explicit project root override)
+    if [[ -n "${WINGMAN_PROJECT_ROOT:-}" ]]; then
+        echo "$WINGMAN_PROJECT_ROOT"
         return
     fi
 
