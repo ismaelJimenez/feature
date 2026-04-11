@@ -80,7 +80,6 @@ flowchart TD
 
 - Write the validated brainstorm to `brainstorm/NN-topic-slug.md` — next sequential number (no gap-filling), slug is lowercase hyphenated 2–4 words
   - (User preferences for brainstorm location override this default)
-- Use elements-of-style:writing-clearly-and-concisely skill if available
 
 **User Review Gate:**
 Ask the user to review the written document before proceeding:
