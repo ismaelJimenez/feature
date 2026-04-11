@@ -7,6 +7,10 @@ description: "You MUST use this before any creative work - creating features, bu
 
 Turn rough ideas into well-structured brainstorm documents through collaborative dialogue. The brainstorm document is the deliverable — it captures problem framing, approaches considered, decisions made, and open threads. From there, the user takes it to any downstream tool or workflow.
 
+## Pre-Execution
+
+Invoke `wingman:git-commit` with event `before_brainstorm` before proceeding.
+
 ## Checklist
 
 Follow these steps in order. Do not skip steps.
@@ -143,13 +147,16 @@ Write the brainstorm document at session end — this step is NOT optional.
 - **Status:** determined by session outcome (see status values above)
 - **Format:** use the Brainstorm Document Structure above
 - **Persist:** write the document to disk
-- **Commit** (if the project uses git): stage and commit with message `docs(brainstorm): add NN-topic-slug`. Ask the user before committing if this is the first brainstorm in the project.
 
 ## Updating the Overview
 
 Update the overview after every brainstorm write or update — this step is NOT optional for complex explorations. For quick decisions, skip if no overview exists yet.
 
-Regenerate `brainstorm/00-overview.md` by scanning all `NN-*.md` files — extract date, status, open threads, and parked ideas. Build using the Overview Document Structure above. Commit after writing (same commit convention as above).
+Regenerate `brainstorm/00-overview.md` by scanning all `NN-*.md` files — extract date, status, open threads, and parked ideas. Build using the Overview Document Structure above.
+
+## Post-Execution
+
+Invoke `wingman:git-commit` after completion with event name `after_brainstorm`.
 
 ## Incomplete Session Handling
 

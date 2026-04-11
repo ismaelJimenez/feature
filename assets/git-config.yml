@@ -19,6 +19,15 @@ init_commit_message: "[Wingman] Initial commit"
 # Prompt is the question shown when optional: true (auto-generated if omitted).
 auto_commit:
   default: false
+  before_brainstorm:
+    enabled: true
+    optional: true
+    message: "[Wingman] Save progress before brainstorming"
+    prompt: "Commit outstanding changes before brainstorm?"
+  after_brainstorm:
+    enabled: true
+    optional: true
+    message: "[Wingman] Add brainstorm document"
   before_clarify:
     enabled: true
     optional: true
