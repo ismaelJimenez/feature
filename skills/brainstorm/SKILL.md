@@ -1,10 +1,6 @@
 ---
 name: brainstorm
-description: "Refines rough ideas into well-structured brainstorming documents through collaborative questioning, alternative exploration, and incremental validation. Use before any creative or design work."
-argument-hint: "[prompt]"
-allowed-tools: Read Write Bash(git add *) Bash(git commit *) Bash(git status *) Bash(git log *) Glob Grep
-metadata:
-  version: "0.2.2"
+description: "You MUST use this before any creative work - creating features, building components, adding functionality, or modifying behavior. Explores user intent before especification."
 ---
 
 # Brainstorming Ideas Into Clarity
