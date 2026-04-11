@@ -23,7 +23,7 @@ You MUST create a task for each of these items and complete them in order:
 4. **Present problem framing, findings & recommendations** — in sections scaled to their complexity, get user approval after each section
 5. **Write brainstorm document** — save to `brainstorm/NN-topic-slug.md`
 6. **User reviews saved document** — ask user to review the brainstorm file before proceeding
-7. **Transition to specification** — invoke `wingman:specify` to create a specification, passing the brainstorm document path as input so the specification skill has full context of the exploration
+7. **Suggest next step** — present the explicit command to run `wingman:specify` with the brainstorm document path as input so the user can transition to specification when ready
 
 ## Process Flow
 
@@ -37,10 +37,10 @@ flowchart TD
     J -- "yes" --> K["Write brainstorm doc"]
     K --> M{"User reviews saved document?"}
     M -- "changes requested" --> K
-    M -- "approved" --> N(("wingman:specify (with brainstorm doc)"))
+    M -- "approved" --> N(("Suggest: wingman:specify (with brainstorm doc)"))
 ```
 
-**The terminal state is invoking `wingman:specify`.** Do NOT invoke any other implementation skill. The ONLY skill you invoke after brainstorming is `wingman:specify`.
+**The terminal state is suggesting the `wingman:specify` command with the brainstorm document path.** Do NOT invoke `wingman:specify` directly. Present the command for the user to run.
 
 ## The Process
 
@@ -84,14 +84,14 @@ flowchart TD
 **User Review Gate:**
 Ask the user to review the written document before proceeding:
 
-> "Brainstorm saved to `<path>`. Review it and let me know if anything needs changing — once approved, I'll invoke `wingman:specify` to turn it into a specification."
+> "Brainstorm saved to `<path>`. Review it and let me know if anything needs changing."
 
 Wait for the user's response. If they request changes, make them. Only proceed once the user approves.
 
-**Specification:**
+**Next step:**
 
-- Invoke the wingman:specify skill to create a detailed specification
-- Do NOT invoke any other skill. wingman:specify is the next step.
+- Present the command for the user to run: e.g., "Run `wingman:specify` with `brainstorm/NN-topic-slug.md`"
+- Do NOT invoke `wingman:specify` directly. The user decides when to proceed.
 
 ## Brainstorm Document Structure
 
@@ -136,7 +136,7 @@ For sessions with meaningful interaction, ask: **"Save this brainstorm session?"
 - **Save as abandoned** — write document with status `abandoned`
 - **Discard** — no artifacts created
 
-Do NOT invoke `wingman:specify` for incomplete sessions. The brainstorm must be fully approved before transitioning to specification.
+Do NOT suggest running `wingman:specify` for incomplete sessions. The brainstorm must be fully approved before transitioning to specification.
 
 ## Key Principles
 
