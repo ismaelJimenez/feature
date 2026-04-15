@@ -1,0 +1,4 @@
+name: wingman
+description: A comprehensive feature development toolkit with structured workflows for brainstorming, specification, planning, implementation, and analysis.
+dependencies:
+  - speckit
