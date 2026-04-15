@@ -25,48 +25,10 @@ Additional project governance and Git automation skills run automatically as par
 
 ## Installation
 
-Install via the [ai-dev-utils](https://github.com/ismaelJimenez/ai-dev-utils) marketplace.
-
-### Claude Code
-
-1. Add the marketplace:
-
-   ```
-   claude plugin marketplace add ismaelJimenez/ai-dev-utils
-   ```
-
-2. Install the plugin:
-
-   ```
-   claude plugin install wingman@ai-dev-utils
-   ```
-
-### GitHub Copilot CLI
-
-1. Add the marketplace:
-
-   ```
-   copilot plugin marketplace add ismaelJimenez/ai-dev-utils
-   ```
-
-2. Install the plugin:
-
-   ```
-   copilot plugin install wingman@ai-dev-utils
-   ```
-
-## Updating
-
-### Claude Code
+Install with [Summon](https://github.com/ai-summon/summon):
 
 ```
-claude plugin update wingman
-```
-
-### GitHub Copilot CLI
-
-```
-copilot plugin update wingman
+summon install wingman
 ```
 
 ## Usage
