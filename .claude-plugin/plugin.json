@@ -1,7 +1,7 @@
 {
   "name": "wingman",
   "description": "A comprehensive feature development toolkit with structured workflows for brainstorming, specification, planning, implementation, and analysis.",
-  "version": "0.3.2",
+  "version": "0.3.3",
   "author": {
     "name": "Ismael Jimenez"
   },
